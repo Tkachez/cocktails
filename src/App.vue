@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-container fluid>
+      <v-row>
+        <v-col cols="12">
+          <ToolBar @input="search"/>
+        </v-col>
+      </v-row>
+      <CocktailPreview v-if="currentCocktail"/>
+      <CocktailsGrid />
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ToolBar from "@/components/ToolBar";
+import CocktailsGrid from "@/components/CocktailsGrid";
+import CocktailPreview from "@/components/CocktailPreview";
+
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CocktailPreview,
+    ToolBar,
+    CocktailsGrid
+  },
+  methods: {
+    search(data) {
+      if (data) {
+        this.$store.dispatch('searchCocktails', data)
+      } else {
+        this.$store.dispatch('clearSearch')
+      }
+    }
+  },
+  computed: {
+    ...mapGetters(['currentCocktail'])
   }
-}
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
