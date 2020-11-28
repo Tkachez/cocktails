@@ -1,27 +1,11 @@
 <template>
   <v-container>
-    <v-row v-if="getAlreadyListedAlert">
-      <v-alert
-          prominent
-          type="error"
-          width="100%"
-      >
-        <v-row align="center">
-          <v-col class="grow">
-            {{ getAlreadyListedAlert }}
-          </v-col>
-          <v-col class="shrink">
-            <v-btn
-                color="white"
-                icon
-                @click="dismissAlert"
-            >
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-alert>
-    </v-row>
+    <v-fade-transition>
+      <AlertComponent v-if="message"
+                      :message="message"
+                      :type="messageType"
+                      @close="dismissAlert"/>
+    </v-fade-transition>
     <v-row>
       <CocktailCard v-if="currentCocktail" :cocktail="currentCocktail" @click="addToMyList"/>
     </v-row>
@@ -31,29 +15,50 @@
 <script>
 import CocktailCard from "@/components/CocktailCard";
 import { mapGetters } from "vuex";
-
+const AlertComponent = () => ({
+  component: import('./Alert'),
+  timeout: 3000
+})
 export default {
   name: "CocktailPreview",
   components: {
-    CocktailCard
+    CocktailCard,
+    AlertComponent
   },
+  data: () => ({
+    messageType: null,
+    message: null
+  }),
   methods: {
     addToMyList() {
       if (this.alreadyListed) {
-        this.$store.dispatch('alreadyListedAlert', 'Already Listed')
+        this.message = 'Already in the list'
+        this.messageType = 'error'
       } else {
+       this.showSuccessAlert()
         this.$store.dispatch('addCocktailToMyList', this.currentCocktail)
-        this.$store.dispatch('showSuccessAlert', 'Successfully added to my list')
         this.$store.dispatch('clearCurrentCocktail')
       }
     },
+    showSuccessAlert() {
+      this.message = 'Successfully added to your list'
+      this.messageType = 'success'
+      setTimeout(() => {
+        this.message = null
+        this.messageType = null
+      }, 1000)
+    },
     dismissAlert() {
-      this.$store.dispatch('dismissAlreadyListedAlertAlert')
+      this.message = null
+      this.messageType = null
     }
   },
   computed: {
-    ...mapGetters(['currentCocktail', 'alreadyListed', 'getAlreadyListedAlert']),
+    ...mapGetters(['currentCocktail', 'alreadyListed']),
   },
+  updated() {
+    console.log(this.message)
+  }
 }
 </script>
 

@@ -6,6 +6,17 @@
                     color="black"
                     clearable
                     @input="$emit('input', query)"></v-text-field>
+      <div class="my-1">
+        <v-btn
+            large
+            tile
+            outlined
+            color="black"
+            @click="getRandom"
+        >
+          Get random cocktail
+        </v-btn>
+      </div>
     </v-row>
     <v-row v-if="searchResults && searchResults.length">
       <v-card width="100%">
@@ -22,20 +33,13 @@
     </v-row>
     <v-row v-else-if="!searchResults && query">
       <v-alert
-          color="blue-grey"
+          type="warning"
           width="100%"
           dark
       >
         No items to choose from ...
       </v-alert>
     </v-row>
-    <v-fade-transition>
-      <v-row v-if="getSuccessAlert">
-        <v-alert width="100%" type="success">
-          {{ getSuccessAlert }}
-        </v-alert>
-      </v-row>
-    </v-fade-transition>
   </v-container>
 </template>
 
@@ -52,10 +56,13 @@ export default {
       this.query = ''
       this.$store.dispatch('clearSearch')
       this.$store.dispatch('setCurrentCockTail', item)
+    },
+    getRandom() {
+      this.$store.dispatch('randomCocktail')
     }
   },
   computed: {
-    ...mapGetters(['searchResults', 'getSuccessAlert'])
+    ...mapGetters(['searchResults']),
   }
 }
 </script>

@@ -3,6 +3,22 @@ export default {
     myCocktails: [],
     currentCocktail: null,
     perRow: 3,
-    alreadyListedAlert: null,
-    successAlert: null,
+    language: 'En',
+    pages: [
+        {
+          id: 1,
+          title: 'Home',
+          link: '/home'
+        },
+        {
+            id: 2,
+            title: 'Profile',
+            link: '/profile'
+        },
+        {
+            id: 3,
+            title: 'About us',
+            link: '/about'
+        },
+    ]
 }

@@ -15,16 +15,13 @@ export default {
         const currentCocktailsIds = state.myCocktails.map(cocktail => cocktail.idDrink)
         return currentCocktailsIds.includes(state.currentCocktail.idDrink)
     },
-    getAlreadyListedAlert(state) {
-        return state.alreadyListedAlert;
-    },
-    getSuccessAlert(state) {
-        return state.successAlert
-    },
     getRows(state) {
         return state.rows
     },
     perRow(state) {
         return state.perRow
+    },
+    getPages(state) {
+      return state.pages
     },
 }

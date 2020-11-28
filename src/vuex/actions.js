@@ -4,7 +4,7 @@ const API_BASE = process.env.VUE_APP_API_URL
 
 export default {
     searchCocktails(ctx, query) {
-        axios.get(`${API_BASE}`,
+        axios.get(`${API_BASE}/search.php`,
             {
                 params: {
                     s: query
@@ -13,6 +13,12 @@ export default {
             .then(list => {
                 ctx.commit('setCocktailsSearchResults', list)
             }).catch(err => console.log(err))
+    },
+    randomCocktail(ctx) {
+        axios.get(`${API_BASE}/random.php`).then(res => res.data.drinks).then(item => {
+            const [result] = item;
+            ctx.commit('setCurrentCocktail', result)
+        })
     },
     clearSearch(ctx) {
         ctx.commit('clearSearch')
@@ -29,17 +35,4 @@ export default {
     removeCocktailFromMyList(ctx, item) {
         ctx.commit('removeCocktail', item)
     },
-    alreadyListedAlert(ctx, message) {
-        ctx.commit('alreadyListedAlert', message)
-    },
-    dismissAlreadyListedAlertAlert(ctx) {
-        ctx.commit('dismissAlreadyListedAlertAlert')
-    },
-    showSuccessAlert(ctx, message) {
-        return new Promise((res) => {
-            ctx.commit('showSuccessAlert', message)
-            setInterval(res, 1000)
-        }).then(() => ctx.commit('dismissSuccessAlert'))
-
-    }
 }
