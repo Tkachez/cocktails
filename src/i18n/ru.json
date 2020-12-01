@@ -1,0 +1,26 @@
+{
+  "app": {
+    "name": "Алкопедия"
+  },
+  "lang": {
+    "en": "Английский",
+    "ru": "Русский"
+  },
+  "search": {
+    "placeholder": "Искать коктейли",
+    "getRandomBtnText": "Случайный коктейль"
+  },
+  "navigation": {
+    "home": "Главная",
+    "profile": "Профиль",
+    "about": "О нас"
+  },
+  "alertMessages": {
+    "success": {
+      "added": "Коктейль успешно добавлен в ваш список"
+    },
+    "error": {
+      "alreadyExists": "Уже находится в списке"
+    }
+  }
+}

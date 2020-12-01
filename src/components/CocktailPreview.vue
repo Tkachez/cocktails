@@ -32,7 +32,7 @@ export default {
   methods: {
     addToMyList() {
       if (this.alreadyListed) {
-        this.message = 'Already in the list'
+        this.message = 'alreadyExists'
         this.messageType = 'error'
       } else {
        this.showSuccessAlert()
@@ -41,7 +41,7 @@ export default {
       }
     },
     showSuccessAlert() {
-      this.message = 'Successfully added to your list'
+      this.message = 'added'
       this.messageType = 'success'
       setTimeout(() => {
         this.message = null
@@ -56,9 +56,6 @@ export default {
   computed: {
     ...mapGetters(['currentCocktail', 'alreadyListed']),
   },
-  updated() {
-    console.log(this.message)
-  }
 }
 </script>
 

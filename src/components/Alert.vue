@@ -7,7 +7,7 @@
       >
         <v-row align="center">
           <v-col class="grow">
-            {{ message }}
+            {{ getMessage(type, message) }}
           </v-col>
           <v-col class="shrink">
             <v-btn v-if="type === 'error'"
@@ -27,7 +27,12 @@
 <script>
 export default {
   name: "Alert",
-  props: ['message', 'type']
+  props: ['message', 'type'],
+  methods: {
+    getMessage(type, message) {
+      return this.$i18n.messages[this.$i18n.locale].alertMessages[type][message];
+    }
+  }
 }
 </script>
 

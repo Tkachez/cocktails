@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-text-field placeholder="Search cocktails"
+      <v-text-field :placeholder="$t('search.placeholder')"
                     v-model="query"
                     color="black"
                     clearable
@@ -14,7 +14,7 @@
             color="black"
             @click="getRandom"
         >
-          Get random cocktail
+          {{ $t('search.getRandomBtnText') }}
         </v-btn>
       </div>
     </v-row>

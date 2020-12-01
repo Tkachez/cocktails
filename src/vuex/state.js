@@ -7,16 +7,19 @@ export default {
     pages: [
         {
           id: 1,
+          value: 'home',
           title: 'Home',
-          link: '/home'
+          link: '/'
         },
         {
             id: 2,
+            value: 'profile',
             title: 'Profile',
             link: '/profile'
         },
         {
             id: 3,
+            value: 'about',
             title: 'About us',
             link: '/about'
         },

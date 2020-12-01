@@ -8,11 +8,13 @@
              v-on="on">
         <v-app-bar-nav-icon dark/>
       </v-btn>
-
     </template>
     <v-list>
       <v-list-item v-for="(page, index) in getPages" :key="index" link>
-        <v-list-item-title v-text="page.title"></v-list-item-title>
+        <router-link :to="page.link">
+          {{ getTranslatedTitle(page.value) }}
+        </router-link>
+
       </v-list-item>
     </v-list>
   </v-menu>
@@ -24,7 +26,13 @@ import { mapGetters } from 'vuex'
 export default {
   name: "Navigation",
   computed: {
-    ...mapGetters(['getPages'])
-  }
+    ...mapGetters(['getPages']),
+  },
+  methods: {
+    getTranslatedTitle(page) {
+      //I'm not sure if that is the proper way to get translated value
+      return this.$i18n.messages[this.$i18n.locale].navigation[page]
+    },
+  },
 }
 </script>

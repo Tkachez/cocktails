@@ -1,0 +1,36 @@
+{
+  "app": {
+    "name": "Alcopedia"
+  },
+  "search": {
+    "placeholder": "Search Cocktails",
+    "getRandomBtnText": "Get Random Cocktail"
+  },
+  "lang": {
+    "en": "English",
+    "ru": "Russian"
+  },
+  "navigation": {
+    "home": "Home",
+    "profile": "Profile",
+    "about": "About us"
+  },
+  "card": {
+    "type": "Type",
+    "glass": "Glass",
+    "ingredients": "Ingredients",
+    "showMoreBtn": {
+      "title": "Show",
+      "more": "More",
+      "less": "Less"
+    }
+  },
+  "alertMessages": {
+    "success": {
+      "added": "Successfully added to your list"
+    },
+    "error": {
+      "alreadyExists": "Already in the list"
+    }
+  }
+}
