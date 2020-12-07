@@ -14,3 +14,7 @@ npm run serve
 ```
 cd src/ node server
 ```
+## Runs tests
+```
+npm run test
+```
