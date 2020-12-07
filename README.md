@@ -1,5 +1,7 @@
 # cocktail
 
+## Remove .example from .env.example or copy its content in your own .env
+
 ## Project setup
 ```
 npm install
