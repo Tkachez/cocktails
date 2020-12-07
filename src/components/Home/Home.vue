@@ -14,9 +14,10 @@
 </template>
 
 <script>
-import ToolBar from "@/components/ToolBar";
+import ToolBar from "@/components/Home/ToolBar";
 import CocktailPreview from "@/components/CocktailPreview";
 
+import search from "@/mixins/search";
 import { mapGetters } from "vuex";
 
 export default {
@@ -25,15 +26,10 @@ export default {
     ToolBar,
     CocktailPreview,
   },
-  methods: {
-    search(data) {
-      if (data) {
-        this.$store.dispatch('searchCocktails', data)
-      } else {
-        this.$store.dispatch('clearSearch')
-      }
-    },
-  },
+  mixins: [search],
+  data: () => ({
+    searchFilter: null
+  }),
   computed: {
     ...mapGetters(['currentCocktail']),
   }

@@ -2,9 +2,11 @@ export default {
     cocktails: [],
     myCocktails: [],
     currentCocktail: null,
-    perRow: 3,
+    perPage: 6,
+    currentPage: 1,
+    totalPages: null,
     language: 'En',
-    pages: [
+    navigationPages: [
         {
           id: 1,
           value: 'home',

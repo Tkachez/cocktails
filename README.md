@@ -1,4 +1,4 @@
-# cocktails
+# cocktail
 
 ## Project setup
 ```

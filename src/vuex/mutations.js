@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default {
     setCocktailsSearchResults(state, list) {
         state.cocktails = list
@@ -5,35 +7,32 @@ export default {
     clearSearch(state) {
         state.cocktails = []
     },
+    loadFullInfo(state, cocktail) {
+        state.fullInfo = cocktail
+    },
+    incrementPage(state) {
+        state.currentPage++
+    },
+    setCurrentPage(state, page) {
+        state.currentPage = page;
+    },
+    setMyCocktails(state, list) {
+        state.myCocktails = _.uniq(state.myCocktails.concat(list))
+    },
+    clearMyCocktails(state) {
+        state.myCocktails = []
+    },
+    setTotalPages(state, total) {
+        state.totalPages = Math.ceil(total / state.perPage)
+    },
+    deleteCocktail(state, item) {
+        state.myCocktails = state.myCocktails.filter(cocktail => cocktail._id !== item._id)
+    },
     setCurrentCocktail(state, item) {
         state.currentCocktail = item
     },
     clearCurrentCocktail(state) {
         state.currentCocktail = null
-    },
-    addCocktail(state) {
-        state.cocktails.forEach(cocktail => {
-            if (cocktail.idDrink === state.currentCocktail.idDrink) {
-                state.alreadyListedAlert = 'Already listed'
-            }
-        })
-
-        if (!state.alreadyListedAlert) {
-            state.myCocktails.push(state.currentCocktail)
-        }
-    },
-    removeCocktail(state, item) {
-        state.myCocktails =  state.myCocktails.filter(cocktail => cocktail.idDrink !== item.idDrink)
-    },
-    alreadyListedAlert(state, message) {
-        state.alreadyListedAlert = message;
-    },
-    dismissAlreadyListedAlertAlert(state) {
-        state.alreadyListedAlert = null
-    },
-    showSuccessAlert(state, message) {
-        console.log(message)
-        state.successAlert = message;
     },
     dismissSuccessAlert(state) {
         state.successAlert = null;

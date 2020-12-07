@@ -1,8 +1,5 @@
 export default {
     searchResults(state) {
-        if (state.cocktails && state.cocktails.length >= 5) {
-            return state.cocktails.slice(0, 5)
-        }
         return state.cocktails
     },
     myCocktails(state) {
@@ -11,17 +8,22 @@ export default {
     currentCocktail(state) {
         return state.currentCocktail
     },
-    alreadyListed(state) {
-        const currentCocktailsIds = state.myCocktails.map(cocktail => cocktail.idDrink)
-        return currentCocktailsIds.includes(state.currentCocktail.idDrink)
+    getCurrentPage(state) {
+        return state.currentPage - 1
+    },
+    perPage(state) {
+        return state.perPage
+    },
+    getTotalPages(state) {
+        return state.totalPages
     },
     getRows(state) {
         return state.rows
     },
-    perRow(state) {
-        return state.perRow
+    getFullInfo(state) {
+        return state.fullInfo
     },
-    getPages(state) {
-      return state.pages
+    getNavigationPages(state) {
+      return state.navigationPages
     },
 }

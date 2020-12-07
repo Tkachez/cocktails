@@ -1,11 +1,40 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row justify="center">
+      <v-col cols="2" align-self="center">
+        <v-card-text class="font-weight-bold text-right">
+          Search by:
+        </v-card-text>
+      </v-col>
+      <v-col cols="4">
+        <v-radio-group
+            v-model="filter"
+            row
+        >
+          <v-radio
+              color="orange"
+              label="title"
+              value="title"
+          ></v-radio>
+          <v-radio
+              color="orange"
+              label="ingredient"
+              value="ingredient"
+          ></v-radio>
+          <v-radio
+              color="orange"
+              label="glass type"
+              value="glass"
+          ></v-radio>
+        </v-radio-group>
+      </v-col>
+    </v-row>
+      <v-row>
       <v-text-field :placeholder="$t('search.placeholder')"
                     v-model="query"
                     color="black"
                     clearable
-                    @input="$emit('input', query)"></v-text-field>
+                    @input="$emit('input', { filter, query })"></v-text-field>
       <div class="my-1">
         <v-btn
             large
@@ -50,12 +79,13 @@ export default {
   name: "ToolBar",
   data: () => ({
     query: '',
+    filter: 'title',
   }),
   methods: {
     setCurrentCockTail(item) {
       this.query = ''
       this.$store.dispatch('clearSearch')
-      this.$store.dispatch('setCurrentCockTail', item)
+      this.$store.dispatch('loadFullInfo', item.idDrink)
     },
     getRandom() {
       this.$store.dispatch('randomCocktail')

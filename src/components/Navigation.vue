@@ -10,8 +10,8 @@
       </v-btn>
     </template>
     <v-list>
-      <v-list-item v-for="(page, index) in getPages" :key="index" link>
-        <router-link :to="page.link">
+      <v-list-item v-for="(page, index) in getNavigationPages" :key="index" link>
+        <router-link :to="page.link" class="text-decoration-none">
           {{ getTranslatedTitle(page.value) }}
         </router-link>
 
@@ -26,7 +26,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: "Navigation",
   computed: {
-    ...mapGetters(['getPages']),
+    ...mapGetters(['getNavigationPages']),
   },
   methods: {
     getTranslatedTitle(page) {
