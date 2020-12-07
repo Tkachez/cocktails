@@ -10,15 +10,11 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles server side
 ```
-npm run build
+cd src/ node server
 ```
-
-### Lints and fixes files
+## Runs tests
 ```
-npm run lint
+npm run test
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
