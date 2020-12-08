@@ -11,6 +11,7 @@ export default {
                 this.$store.dispatch('incrementPage').then(() => {
                     this.$store.dispatch('fetchTotalCocktails').then(() => {
                         this.$store.dispatch('fetchCocktailsFromDb', {
+                            filter: this.filter,
                             page: this.getCurrentPage,
                             perPage: this.perPage,
                         }).then(() => {

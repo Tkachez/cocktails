@@ -1,11 +1,12 @@
 import axios from 'axios'
 
 const API_BASE = process.env.VUE_APP_API_URL
+const SERVER_URL =process.env.VUE_APP_SERVER_URL
 
 export default {
     fetchTotalCocktails(ctx) {
         return new Promise((resolve, reject) => {
-            axios.get(`http://localhost:5000/api/cocktails/count`)
+            axios.get(`${SERVER_URL}/cocktails/count`)
                 .then(res => res.data)
                 .then(total => {
                     ctx.commit('setTotalPages', total)
@@ -17,7 +18,7 @@ export default {
     },
     fetchCocktailsFromDb(ctx, params) {
         return new Promise((resolve) => {
-            axios.get(`http://localhost:5000/api/cocktails`, {
+            axios.get(`${SERVER_URL}/cocktails`, {
                 params: {
                     filter: params.filter,
                     skip: params.page * params.perPage,
@@ -35,7 +36,7 @@ export default {
     },
     addCocktailToDb(ctx, item) {
         return new Promise((resolve, reject) => {
-            axios.post(`http://localhost:5000/api/cocktails`, item)
+            axios.post(`${SERVER_URL}/cocktails`, item)
                 .then(res => res.data)
                 .then(item => {
                     resolve(item)
@@ -47,7 +48,7 @@ export default {
 
     },
     deleteCocktailFromDb(ctx, item) {
-        axios.delete(`http://localhost:5000/api/cocktails/${item._id}`)
+        axios.delete(`${SERVER_URL}/cocktails/${item._id}`)
             .then(() => {
                 ctx.commit('deleteCocktail', item)
             })
