@@ -60,6 +60,7 @@ export default {
         this.$store.dispatch('clearIngredients')
       } else {
         this.$store.dispatch('clearSearch')
+        this.$store.dispatch('setCurrentCockTail', null)
         this.$store.dispatch('setCurrentIngredient', null)
         this.$store.dispatch('fetchIngredients')
       }
