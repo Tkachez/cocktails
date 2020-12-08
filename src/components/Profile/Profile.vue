@@ -6,23 +6,18 @@
           <v-radio-group v-model="filter" :label="$t('filter.filter')" row>
             <v-radio
                 :label="$t('filter.title')"
-                value="title"
-                color="orange"
-            />
-            <v-radio
-                :label="$t('filter.complex')"
-                value="complexity"
+                value="strDrink"
                 color="orange"
             />
             <v-radio
                 :label="$t('filter.recent')"
-                value="recent"
+                value="updatedAt"
                 color="orange"
             />
           </v-radio-group>
         </v-col>
       </v-row>
-      <CocktailsGrid :full-card="true" :profile="true"/>
+      <CocktailsGrid :full-card="true" :profile="true" :filter="filter"/>
     </v-container>
   </v-main>
 </template>
@@ -33,7 +28,7 @@ import CocktailsGrid from "@/components/CocktailsGrid";
 export default {
   name: "Profile",
   data: () => ({
-    filter: 'title'
+    filter: 'strDrink'
   }),
   components: {
     CocktailsGrid

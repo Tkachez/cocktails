@@ -53,6 +53,10 @@
     },
     "error": {
       "alreadyExists": "Already in the list"
+    },
+    "info":{
+      "beginning": "Currently you do not have cocktail in your list. Navigate to",
+      "end": "page to add some."
     }
   }
 }

@@ -14,7 +14,11 @@ router.get("/cocktails/count", async (req, res) => {
 })
 
 router.get("/cocktails", async (req, res) => {
-    Cocktail.find().skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit)).then(message => {
+    const filter = {
+        [req.query.filter]: 1
+    }
+
+    Cocktail.find().sort(filter).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit)).then(message => {
         res.json(message)
     }).catch(error => {
         res.status(500)

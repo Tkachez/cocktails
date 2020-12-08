@@ -20,12 +20,12 @@
         </CocktailCard>
       </v-col>
     </v-row>
-    <AlertComponent v-else-if="!busy && !myCocktails.length && profile" type="info" v-slot:alert>
-      Currently you do not have cocktail in your list. Navigate to
-      <router-link to="/">Home</router-link>
-      page to add some.
+    <AlertComponent v-else-if="!busy && !items.length && profile" type="info" v-slot:alert>
+      {{ $t('alertMessages.info.beginning') }}
+      <router-link to="/">{{ $t('navigation.home') }}</router-link>
+      {{ $t('alertMessages.info.end') }}
     </AlertComponent>
-    <v-row v-if="busy" justify="center">
+    <v-row v-if="busy && profile" justify="center">
       <v-col cols="2">
         <v-progress-linear
             stream
@@ -34,7 +34,7 @@
         />
       </v-col>
     </v-row>
-    <div v-if="profile" v-infinite-scroll="infiniteHandler" infinite-scroll-disabled="loading"
+    <div v-if="profile" v-infinite-scroll="infiniteHandler" infinite-scroll-disabled="busy"
          infinite-scroll-distance="10"></div>
   </v-container>
 </template>
@@ -52,22 +52,23 @@ const AlertComponent = () => ({
 export default {
   mixins: [infiniteHandler],
   name: "CocktailsGrid",
-  props: ['fullCard', 'profile', 'listing'],
+  props: ['fullCard', 'profile', 'listing', 'filter'],
   data: () => ({
     isInit: false,
-    busy: null,
+    busy: true,
   }),
+  watch: {
+    filter() {
+      this.busy = true
+      this.$store.dispatch('setCurrentPage',1)
+      this.$store.dispatch('clearMyCocktails').then(() => {
+        this.getCocktails()
+      })
+    }
+  },
   created() {
     if (this.profile) {
-      this.$store.dispatch('fetchTotalCocktails').then(() => {
-        this.$store.dispatch('fetchCocktailsFromDb', {
-          page: this.getCurrentPage,
-          perPage: this.perPage,
-        }).then(() => {
-          this.isInit = true
-          this.busy = false
-        }).catch(err => console.log(err))
-      })
+      this.getCocktails()
     }
   },
   computed: {
@@ -81,6 +82,18 @@ export default {
     CocktailCard
   },
   methods: {
+    getCocktails() {
+      this.$store.dispatch('fetchTotalCocktails').then(() => {
+        this.$store.dispatch('fetchCocktailsFromDb', {
+          filter: this.filter,
+          page: this.getCurrentPage,
+          perPage: this.perPage,
+        }).then(() => {
+          this.isInit = true
+          this.busy = false
+        }).catch(err => console.log(err))
+      })
+    },
     showInfo(data) {
       window.scrollTo(0, 0)
       this.$store.dispatch('searchCocktailById', data.idDrink).then(res => {

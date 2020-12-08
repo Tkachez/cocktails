@@ -5,7 +5,7 @@
                     v-model="query"
                     color="black"
                     clearable
-                    @input="$emit('input', { filter, query })"></v-text-field>
+                    @input="$emit('input', query)"></v-text-field>
       <div class="my-1">
         <v-btn
             large
@@ -28,7 +28,6 @@ export default {
   name: "ToolBar",
   data: () => ({
     query: '',
-    filter: 'title',
   }),
   methods: {
     setCurrentCockTail(item) {

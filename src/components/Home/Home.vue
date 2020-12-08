@@ -30,9 +30,6 @@ export default {
     CocktailPreview,
   },
   mixins: [search],
-  data: () => ({
-    searchFilter: null
-  }),
   computed: {
     ...mapGetters(['currentCocktail']),
   }

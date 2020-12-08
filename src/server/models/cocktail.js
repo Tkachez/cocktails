@@ -37,6 +37,6 @@ const cocktail = new mongoose.Schema({
     strMeasure13: { type: String, default: null },
     strMeasure14: { type: String, default: null },
     strMeasure15: { type: String, default: null },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Cocktail', cocktail);

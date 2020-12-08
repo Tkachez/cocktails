@@ -19,6 +19,7 @@ export default {
         return new Promise((resolve) => {
             axios.get(`http://localhost:5000/api/cocktails`, {
                 params: {
+                    filter: params.filter,
                     skip: params.page * params.perPage,
                     limit: params.perPage,
                 },
