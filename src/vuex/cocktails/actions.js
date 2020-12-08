@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API_BASE = process.env.VUE_APP_API_URL
-const SERVER_URL =process.env.VUE_APP_SERVER_URL
+const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 export default {
     fetchTotalCocktails(ctx) {
