@@ -1,4 +1,5 @@
 export default [
+    'v-hover',
     'v-icon',
     'v-card',
     'v-row',

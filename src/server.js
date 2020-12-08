@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 const routes = require("./server/routes")
 
 mongoose
-    .connect('mongodb+srv://tkachez:tkach666@testcluster.jyclm.mongodb.net/cocktails?retryWrites=true&w=majority', {
+    .connect('mongodb+srv://tkachez:UJRDkTODX80mXvM2@testcluster.jyclm.mongodb.net/cocktails?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })

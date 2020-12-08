@@ -13,6 +13,7 @@
   "navigation": {
     "home": "Home",
     "profile": "Profile",
+    "ingredients": "Ingredients",
     "about": "About us"
   },
   "card": {
@@ -24,6 +25,27 @@
       "more": "More",
       "less": "Less"
     }
+  },
+  "ingredients": {
+    "nodesc": "No description"
+  },
+  "filter": {
+    "filter": "Filter by",
+    "title": "title",
+    "complex": "complexity",
+    "recent": "most recent"
+  },
+  "cocktail": {
+    "myList": "my list",
+    "add": "Add to",
+    "remove": "Remove from",
+    "type": "Type",
+    "glass": "Glass",
+    "ingredients": "Ingredients",
+    "instructions": "Instructions",
+    "show": "Show",
+    "less": "less",
+    "more": "more"
   },
   "alertMessages": {
     "success": {

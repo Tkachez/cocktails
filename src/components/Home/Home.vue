@@ -7,7 +7,8 @@
             <ToolBar @input="search"/>
           </v-col>
         </v-row>
-        <CocktailPreview />
+        <CocktailPreview :full-card="true"/>
+        <CocktailsGrid :listing="true"/>
       </v-container>
     </v-main>
   </v-app>
@@ -19,10 +20,12 @@ import CocktailPreview from "@/components/CocktailPreview";
 
 import search from "@/mixins/search";
 import { mapGetters } from "vuex";
+import CocktailsGrid from "@/components/CocktailsGrid";
 
 export default {
   name: "Home",
   components: {
+    CocktailsGrid,
     ToolBar,
     CocktailPreview,
   },

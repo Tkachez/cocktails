@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _ from "lodash";
 
 export default {
     setCocktailsSearchResults(state, list) {
@@ -10,20 +10,11 @@ export default {
     loadFullInfo(state, cocktail) {
         state.fullInfo = cocktail
     },
-    incrementPage(state) {
-        state.currentPage++
-    },
-    setCurrentPage(state, page) {
-        state.currentPage = page;
-    },
     setMyCocktails(state, list) {
         state.myCocktails = _.uniq(state.myCocktails.concat(list))
     },
     clearMyCocktails(state) {
         state.myCocktails = []
-    },
-    setTotalPages(state, total) {
-        state.totalPages = Math.ceil(total / state.perPage)
     },
     deleteCocktail(state, item) {
         state.myCocktails = state.myCocktails.filter(cocktail => cocktail._id !== item._id)
@@ -31,10 +22,13 @@ export default {
     setCurrentCocktail(state, item) {
         state.currentCocktail = item
     },
-    clearCurrentCocktail(state) {
-        state.currentCocktail = null
+    incrementPage(state) {
+        state.currentPage++
     },
-    dismissSuccessAlert(state) {
-        state.successAlert = null;
-    }
+    setCurrentPage(state, page) {
+        state.currentPage = page;
+    },
+    setTotalPages(state, total) {
+        state.totalPages = Math.ceil(total / state.perPage)
+    },
 }

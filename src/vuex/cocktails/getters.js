@@ -17,13 +17,7 @@ export default {
     getTotalPages(state) {
         return state.totalPages
     },
-    getRows(state) {
-        return state.rows
-    },
     getFullInfo(state) {
         return state.fullInfo
-    },
-    getNavigationPages(state) {
-      return state.navigationPages
     },
 }

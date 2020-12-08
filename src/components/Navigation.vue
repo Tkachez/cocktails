@@ -10,29 +10,24 @@
       </v-btn>
     </template>
     <v-list>
-      <v-list-item v-for="(page, index) in getNavigationPages" :key="index" link>
-        <router-link :to="page.link" class="text-decoration-none">
-          {{ getTranslatedTitle(page.value) }}
-        </router-link>
-
+      <v-list-item @click="$router.push({ name: 'home' })">
+        {{ $t('navigation.home') }}
+      </v-list-item>
+      <v-list-item @click="$router.push({ name: 'profile' })">
+        {{ $t('navigation.profile') }}
+      </v-list-item>
+      <v-list-item @click="$router.push({ name: 'allIngredients' })">
+        {{ $t('navigation.ingredients') }}
+      </v-list-item>
+      <v-list-item @click="$router.push({ name: 'about' })">
+        {{ $t('navigation.about') }}
       </v-list-item>
     </v-list>
   </v-menu>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   name: "Navigation",
-  computed: {
-    ...mapGetters(['getNavigationPages']),
-  },
-  methods: {
-    getTranslatedTitle(page) {
-      //I'm not sure if that is the proper way to get translated value
-      return this.$i18n.messages[this.$i18n.locale].navigation[page]
-    },
-  },
 }
 </script>

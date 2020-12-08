@@ -11,14 +11,16 @@
             class="pa-2"
             outlined
             tile
+            :profile="profile"
+            :full-card="fullCard"
             :cocktail="item"
-            :list-item="true"
             @click="removeFromMyList(item)"
+            @info="showInfo"
         >
         </CocktailCard>
       </v-col>
     </v-row>
-    <AlertComponent v-else-if="!busy && !myCocktails.length" type="info" v-slot:alert>
+    <AlertComponent v-else-if="!busy && !myCocktails.length && profile" type="info" v-slot:alert>
       Currently you do not have cocktail in your list. Navigate to
       <router-link to="/">Home</router-link>
       page to add some.
@@ -32,7 +34,8 @@
         />
       </v-col>
     </v-row>
-    <div v-infinite-scroll="infiniteHandler" infinite-scroll-disabled="loading" infinite-scroll-distance="10"></div>
+    <div v-if="profile" v-infinite-scroll="infiniteHandler" infinite-scroll-disabled="loading"
+         infinite-scroll-distance="10"></div>
   </v-container>
 </template>
 
@@ -42,20 +45,20 @@ import infiniteHandler from '@/mixins/infiniteScroll'
 import {mapGetters} from 'vuex';
 
 const AlertComponent = () => ({
-  component: import('../Alert'),
+  component: import('./Alert'),
   timeout: 3000
 })
 
 export default {
   mixins: [infiniteHandler],
   name: "CocktailsGrid",
-  props: ['landing'],
+  props: ['fullCard', 'profile', 'listing'],
   data: () => ({
     isInit: false,
     busy: null,
   }),
   created() {
-    if (!this.landing) {
+    if (this.profile) {
       this.$store.dispatch('fetchTotalCocktails').then(() => {
         this.$store.dispatch('fetchCocktailsFromDb', {
           page: this.getCurrentPage,
@@ -68,9 +71,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['myCocktails', 'searchResults']),
+    ...mapGetters(['myCocktails', 'searchResults', 'currentCocktail']),
     items() {
-      return this.landing ? this.searchResults : this.myCocktails
+      return this.profile ? this.myCocktails : this.searchResults
     }
   },
   components: {
@@ -78,6 +81,12 @@ export default {
     CocktailCard
   },
   methods: {
+    showInfo(data) {
+      window.scrollTo(0, 0)
+      this.$store.dispatch('searchCocktailById', data.idDrink).then(res => {
+        this.$store.dispatch('setCurrentCockTail', res)
+      })
+    },
     removeFromMyList(item) {
       this.$store.dispatch('deleteCocktailFromDb', item)
     },

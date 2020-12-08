@@ -1,7 +1,7 @@
 export default {
     methods: {
         search(data) {
-            console.log(data)
+            this.$store.dispatch('setCurrentCockTail', null)
             if (data.filter === 'title') {
                 this.$store.dispatch('searchCocktailsByTitle', data.query)
             }

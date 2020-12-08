@@ -7,9 +7,10 @@
           v-slot:alert
           @close="dismissAlert">{{ message }}</AlertComponent>
     </v-fade-transition>
-    <v-row>
+    <v-row v-if="currentCocktail">
       <CocktailCard
-          v-if="currentCocktail"
+          :full-card="fullCard"
+          :preview="true"
           :cocktail="currentCocktail"
           @click="addToMyList"/>
     </v-row>
@@ -26,6 +27,7 @@ const AlertComponent = () => ({
 })
 export default {
   name: "CocktailPreview",
+  props: ['fullCard'],
   components: {
     CocktailCard,
     AlertComponent
@@ -37,14 +39,14 @@ export default {
   }),
   methods: {
     addToMyList() {
-      console.log(111)
       this.$store.dispatch('addCocktailToDb', this.currentCocktail)
           .then(() => {
             this.showSuccessAlert()
-            this.$store.dispatch('clearCurrentCocktail')
+            this.$store.dispatch('setCurrentCockTail', null)
           })
           .catch(() => {
-            this.message = 'Already in your list'
+            this.$store.dispatch('setCurrentCockTail', null)
+            this.message = this.$t('alertMessages.error.alreadyExists')
             this.messageType = 'error'
           })
     },
@@ -52,7 +54,7 @@ export default {
       this.dialog = !this.dialog
     },
     showSuccessAlert() {
-      this.message = 'Successfully added to my list'
+      this.message = this.$t('alertMessages.success.added')
       this.messageType = 'success'
       setTimeout(() => {
         this.message = null
@@ -68,7 +70,7 @@ export default {
     ...mapGetters(['currentCocktail']),
   },
   destroyed() {
-    this.$store.dispatch('clearCurrentCocktail')
+    this.$store.dispatch('setCurrentCockTail', null)
   }
 }
 </script>

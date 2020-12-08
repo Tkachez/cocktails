@@ -13,7 +13,29 @@
   "navigation": {
     "home": "Главная",
     "profile": "Профиль",
+    "ingredients": "Ингредиенты",
     "about": "О нас"
+  },
+  "ingredients": {
+    "nodesc": "Нет описания"
+  },
+  "filter": {
+    "filter": "Фильтровать по",
+    "title": "названию",
+    "complex": "сложности",
+    "recent": "недавним"
+  },
+  "cocktail": {
+    "myList": "мой список",
+    "add": "Добавить в",
+    "remove": "Удалить из",
+    "type": "Тип",
+    "glass": "Тип стакана",
+    "ingredients": "Ингредиенты",
+    "instructions": "Инструкция",
+    "show": "Показать",
+    "less": "меньше",
+    "more": "больше"
   },
   "alertMessages": {
     "success": {
