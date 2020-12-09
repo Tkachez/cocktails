@@ -7,7 +7,7 @@
             <ToolBar @input="search"/>
           </v-col>
         </v-row>
-        <v-banner two-line v-if="!searchResults.length">
+        <v-banner two-line v-if="!searchResults.length && !currentCocktail">
           <v-avatar
               slot="icon"
               color="primary accent-4"
@@ -55,7 +55,7 @@ export default {
   },
   mixins: [search],
   computed: {
-    ...mapGetters(['currentCocktail', 'searchResults']),
+    ...mapGetters(['currentCocktail', 'searchResults', 'currentCocktail']),
   }
 }
 </script>
