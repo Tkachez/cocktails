@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <v-container fluid>
-      That is the app to manage you fun time
+      {{ $t('about.desc') }}
     </v-container>
   </v-main>
 </template>

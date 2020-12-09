@@ -1,6 +1,9 @@
 {
   "app": {
-    "name": "Alcopedia"
+    "name": "Alcopedia",
+    "desc": "That app has over hundred of cocktails in its base to help you find suitable drink for your party. If you know ingredient name simply use search above. If you have an ingredient and wish to find a cocktail that you can make, navigate to",
+    "link": "Ingredients page",
+    "more": "Read more"
   },
   "search": {
     "placeholder": "Search",
@@ -28,6 +31,9 @@
   },
   "ingredients": {
     "nodesc": "No description"
+  },
+  "about": {
+    "desc": "That is the app to manage your fun time"
   },
   "filter": {
     "filter": "Filter by",

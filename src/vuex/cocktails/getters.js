@@ -17,7 +17,4 @@ export default {
     getTotalPages(state) {
         return state.totalPages
     },
-    getFullInfo(state) {
-        return state.fullInfo
-    },
 }

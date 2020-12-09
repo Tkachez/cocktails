@@ -7,6 +7,30 @@
             <ToolBar @input="search"/>
           </v-col>
         </v-row>
+        <v-banner two-line v-if="!searchResults.length">
+          <v-avatar
+              slot="icon"
+              color="primary accent-4"
+              size="40"
+          >
+            <v-icon
+                icon="mdi-help-circle-outline"
+                color="white"
+            >
+              mdi-help-circle-outline
+            </v-icon>
+          </v-avatar>
+          {{ $t('app.desc') }} <router-link to="/ingredients">{{ $t('app.link') }}</router-link>
+          <template v-slot:actions>
+            <v-btn
+                text
+                color="orange accent-4"
+                @click="$router.push('about')"
+            >
+              {{ $t('app.more') }}
+            </v-btn>
+          </template>
+        </v-banner>
         <CocktailPreview :full-card="true"/>
         <CocktailsGrid :listing="true"/>
       </v-container>
@@ -31,7 +55,7 @@ export default {
   },
   mixins: [search],
   computed: {
-    ...mapGetters(['currentCocktail']),
+    ...mapGetters(['currentCocktail', 'searchResults']),
   }
 }
 </script>
